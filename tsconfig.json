@@ -1,0 +1,26 @@
+{
+	"compilerOptions": {
+		"module": "commonjs",
+		"target": "es6",
+		"lib": [
+			"es2015",
+			"dom"
+		],
+		"outDir": "dist",
+		"declaration": true,
+		"experimentalDecorators": true,
+		"removeComments": true,
+		"pretty": true
+	},
+    "include": [
+		"src/**/*",
+		"test/**/*"
+	],
+	"typeRoots": [
+		"node_modules/json-d-ts"
+	],
+    "exclude": [
+        "node_modules",
+        "**/*.spec.ts"
+    ]
+}

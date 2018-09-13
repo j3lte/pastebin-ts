@@ -1,0 +1,56 @@
+{
+  "name": "pastebin-ts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "node_modules/typescript/bin/tsc",
+    "exec": "node_modules/typescript/bin/tsc && node test.js",
+    "clean": "rimraf coverage dist tmp",
+    "lint": "tslint -t stylish --project \"tsconfig.json\"",
+    "pretest": "npm run lint",
+    "test": "npm run test-only",
+    "test-only": "jest --coverage",
+    "test:watch": "jest --watch --coverage"
+  },
+  "keywords": [
+    "pastebin"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/j3lte/pastebin-ts"
+  },
+  "bugs": {
+    "url": "https://github.com/j3lte/pastebin-ts/issues"
+  },
+  "readmeFilename": "README.md",
+  "author": "Jelte Lagendijk <jwlagendijk@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "fs-readfile-promise": "^3.0.1",
+    "lodash": "^4.17.10",
+    "pjson": "^1.0.9",
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.5",
+    "when": "^3.7.8",
+    "xml2js": "^0.4.19"
+  },
+  "devDependencies": {
+    "@types/fs-readfile-promise": "^3.0.0",
+    "@types/jest": "^23.3.2",
+    "@types/lodash": "^4.14.116",
+    "@types/node": "^10.5.4",
+    "@types/request": "^2.47.1",
+    "@types/request-promise-native": "^1.0.15",
+    "@types/typescript": "^2.0.0",
+    "@types/xml2js": "^0.4.3",
+    "jest": "^23.6.0",
+    "rimraf": "^2.6.2",
+    "ts-jest": "^23.1.4",
+    "tslint": "^5.11.0",
+    "tslint-microsoft-contrib": "^5.2.1",
+    "tsutils": "^3.0.0",
+    "typescript": "^3.0.3"
+  }
+}
