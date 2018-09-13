@@ -38,11 +38,11 @@ pastebin
         'file': './uploadthistopastebin.txt',
         'title': 'pastebin-js test'
     })
-    .then(function (data) {
+    .then((data) => {
         // we have succesfully pasted it. Data contains the id
         console.log(data);
     })
-    .fail(function (err) {
+    .catch((err) => {
         console.log(err);
     });
 ```
