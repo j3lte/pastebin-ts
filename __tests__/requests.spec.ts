@@ -3,7 +3,8 @@ const request = <RequestAPI<RequestPromise, RequestPromiseOptions, RequiredUriUr
 import { RequestAPI, RequiredUriUrl, ResponseRequest } from 'request';
 import { RequestPromise, RequestPromiseOptions } from 'request-promise-native';
 
-import {getRequest, postRequest} from '../src/methods';
+import {getRequest} from '../src/methods/get';
+import {postRequest} from '../src/methods/post';
 
 import {createOptions} from './fixtures/responses';
 
@@ -151,7 +152,7 @@ describe('postRequest', () => {
     it('rejects a bad API request', async () => {
         (<jest.Mock>request).mockImplementation(async () => responseBadAPIRequest);
 
-        await expect(postRequest(url)).rejects.toEqual(new Error(`Error: Bad API request`));
+        await expect(postRequest(url)).rejects.toEqual(new Error(`Bad API request`));
 
         expect(request).lastCalledWith(url, postOpts);
     });
