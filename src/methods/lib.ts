@@ -34,22 +34,26 @@ const getOptions = (method: string, params: {} = {}): RequestPromiseOptions => {
 };
 
 const handleResponse = (response: Response, resolve: Function, reject: Function): void => {
-    const {statusCode, body} = response;
-
-    if (isNull(statusCode) || isUndefined(statusCode)) {
-        reject(new Error('Unknown status'));
-    } else if (statusCode === 404) {
-        reject(new Error('Error 404, not found'));
-    } else if (statusCode !== 200) {
-        reject(new Error(`Unknown error, status: ${statusCode}`));
-    } else if (isNull(body) || isUndefined(body) || body === '') {
-        reject(new Error('Empty response'));
-    } else if ((<string>body).indexOf('Bad API request') !== -1) {
-        reject(new Error((<string>body)));
-    } else if ((<string>body).indexOf('Post limit') !== -1) {
-        reject(new Error(`Error: ${body}`));
+    if (response === null || response === undefined) {
+        reject(new Error('No response!'));
     } else {
-        resolve(body);
+        const {statusCode, body} = response;
+
+        if (isNull(statusCode) || isUndefined(statusCode)) {
+            reject(new Error('Unknown status'));
+        } else if (statusCode === 404) {
+            reject(new Error('Error 404, not found'));
+        } else if (statusCode !== 200) {
+            reject(new Error(`Unknown error, status: ${statusCode}`));
+        } else if (isNull(body) || isUndefined(body) || body === '') {
+            reject(new Error('Empty response'));
+        } else if ((<string>body).indexOf('Bad API request') !== -1) {
+            reject(new Error((<string>body)));
+        } else if ((<string>body).indexOf('Post limit') !== -1) {
+            reject(new Error(`Error: ${body}`));
+        } else {
+            resolve(body);
+        }
     }
 };
 
