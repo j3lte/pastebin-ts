@@ -24,8 +24,11 @@ import {
 
 import {
     getRequest,
+} from './methods/get';
+
+import {
     postRequest,
-} from './methods';
+} from './methods/post';
 
 import * as fsReadfilePromise from 'fs-readfile-promise';
 import {Parser} from 'xml2js';
