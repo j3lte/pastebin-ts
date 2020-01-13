@@ -10,6 +10,7 @@ export const defaultOptions: IPastebinOptions = {
 export const ENDPOINTS = {
     POST: 'https://pastebin.com/api/api_post.php',
     LOGIN: 'https://pastebin.com/api/api_login.php',
+    APIRAW: 'https://pastebin.com/api/api_raw.php',
     RAW: 'https://pastebin.com/raw.php?i=',
 };
 

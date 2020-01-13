@@ -54,7 +54,20 @@ export class PastebinAPI {
         this.config = extend(defaultOptions, conf);
     }
 
-    public getPaste(id: string): Promise<string> {
+    public async getPaste(id: string, isPrivate: boolean = false): Promise<string> {
+        if (isPrivate) {
+            const params = this.createParams('show_paste');
+            params.api_paste_key = id;
+            try {
+                await this.createAPIuserKey();
+                params.api_user_key = this.config.api_user_key;
+
+                return this.postApi(ENDPOINTS.APIRAW, params);
+            } catch (error) {
+                return Promise.reject(error);
+            }
+        }
+
         return this.getApi(ENDPOINTS.RAW + id);
     }
 
