@@ -23,6 +23,7 @@ describe('createPaste', () => {
 
     it('reject an empty request', async () => {
         const pastebin = new PastebinAPI('TESTKEY');
+        // @ts-ignore
         await expect(pastebin.createPaste()).rejects;
     });
 
@@ -41,18 +42,21 @@ describe('createPaste', () => {
     it('rejects with wrong expiration', async () => {
         const pastebin = new PastebinAPI('TESTKEY');
         const err = new Error('Expiration format \'WRONG\' is unknown!');
+        // @ts-ignore
         await expect(pastebin.createPaste({text: 'TEST', expiration: 'WRONG'})).rejects.toEqual(err);
     });
 
     it('rejects with wrong format', async () => {
         const pastebin = new PastebinAPI('TESTKEY');
         const err = new Error('Paste format unknown is unknown!');
+        // @ts-ignore
         await expect(pastebin.createPaste({text: 'TEST', format: 'unknown'})).rejects.toEqual(err);
     });
 
     it('rejects when text is not a string', async () => {
         const pastebin = new PastebinAPI('TESTKEY');
         const err = new Error('text can only be of type string!');
+        // @ts-ignore
         await expect(pastebin.createPaste({text: 1111})).rejects.toEqual(err);
         await expect(pastebin.createPaste({text: null})).rejects.toEqual(err);
     });

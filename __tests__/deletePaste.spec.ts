@@ -24,6 +24,7 @@ describe('deletePaste', () => {
 
     it('reject an empty request', async () => {
         const pastebin = new PastebinAPI('TESTKEY');
+        // @ts-ignore
         await expect(pastebin.deletePaste()).rejects;
     });
 

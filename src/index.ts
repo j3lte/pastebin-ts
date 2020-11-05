@@ -1,4 +1,4 @@
-import {PastebinAPI} from './api';
+import {PastebinAPI as Pastebin} from './api';
 
 export {
     IPastebinOptions,
@@ -10,6 +10,6 @@ export {
     IPasteAPIOptions,
 } from './interfaces';
 
-export type PastebinAPI = PastebinAPI;
+export type PastebinAPI = Pastebin;
 
-exports = module.exports = PastebinAPI;
+exports = module.exports = Pastebin;

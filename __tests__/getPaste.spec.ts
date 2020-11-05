@@ -23,6 +23,7 @@ describe('getPaste anonymous', () => {
     });
 
     it('reject an empty request', async () => {
+        // @ts-ignore
         await expect(pastebin.getPaste()).rejects;
     });
 
