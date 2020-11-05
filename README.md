@@ -39,7 +39,7 @@ pastebin
         'title': 'pastebin-js test'
     })
     .then((data) => {
-        // we have succesfully pasted it. Data contains the id
+        // we have successfully pasted it. Data contains the id
         console.log(data);
     })
     .catch((err) => {
