@@ -34,10 +34,11 @@ import * as fsReadfilePromise from 'fs-readfile-promise';
 import {Parser} from 'xml2js';
 
 export class PastebinAPI {
-    private config: IPastebinOptions;
+    private readonly config: IPastebinOptions;
 
     // Public methods
 
+    // tslint:disable-next-line: no-null-keyword
     constructor(config: IPastebinOptions|string = null) {
         if (isUndefined(config) || isNull(config)) {
             this.config = {};
@@ -232,17 +233,20 @@ export class PastebinAPI {
         }
         const { api_dev_key, api_user_name, api_user_password } = this.config;
 
-        return this.postApi(ENDPOINTS.LOGIN, {
+        return this
+            .postApi(ENDPOINTS.LOGIN, {
                 api_dev_key,
                 api_user_name,
                 api_user_password,
-            }).then((data: string) => {
+            })
+            .then((data: string) => {
                 const key = data.trim();
                 if (key.length !== 32) {
                     return Promise.reject(new Error(`Error in creating user key: ${key}`));
                 }
                 this.config.api_user_key = key;
 
+                // tslint:disable-next-line: no-null-keyword
                 return Promise.resolve(null);
             });
     }

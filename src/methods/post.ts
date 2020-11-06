@@ -1,30 +1,33 @@
-import * as RequestClient from 'request-promise-native';
-// tslint:disable-next-line:no-require-imports no-var-requires
-const request = <RequestAPI<RequestPromise, RequestPromiseOptions, RequiredUriUrl>>require('request-promise-native');
-import { RequestAPI, RequiredUriUrl } from 'request';
-// tslint:disable-next-line:no-duplicate-imports
-import { FullResponse, RequestPromise, RequestPromiseOptions } from 'request-promise-native';
-import { getOptions, handleResponse} from './lib';
+import got, { HTTPError, Response } from 'got';
+import { handleResponse, headers, timeout } from './lib';
 
-export const postRequest = (path: string = '', params?: {}) => new Promise<string>(async (resolve: Function, reject: Function) => {
-    const options: RequestPromiseOptions = getOptions('POST', params);
+export const postRequest = (path: string = '', params: {} = {}) => new Promise<string>(async (resolve: Function, reject: Function) => {
+    const options = {
+        headers,
+        timeout,
+        followRedirect: true,
+        form: params,
+    };
 
     if (path === '') {
+        // tslint:disable-next-line: no-unsafe-any
         return reject(new Error('No path provided!'));
     }
 
-    let response: FullResponse;
-    try {
-        // tslint:disable-next-line:await-promise no-unsafe-any
-        response = await request(path, options);
-    } catch (e) {
-        // tslint:disable-next-line:no-unsafe-any
-        if (e.statusCode && e.statusCode === 404) {
-            return reject(new Error('Error 404, not found'));
-        }
+    got(path, {...options, method: 'POST'})
+        .then((res: Response<string>) => {
+            handleResponse(res, resolve, reject);
+        })
+        .catch((e: HTTPError)  => {
+            // tslint:disable-next-line: no-typeof-undefined
+            if (typeof e.response === 'undefined') {
+                return reject(e);
+            }
 
-        return reject(new Error(<string>e));
-    }
+            if (e.response.statusCode === 404) {
+                return reject(new Error('Error 404, not found'));
+            }
 
-    handleResponse(response, resolve, reject);
+            return reject(e);
+        });
 });
