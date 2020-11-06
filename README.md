@@ -2,11 +2,9 @@ pastebin-ts
 ===
 
 [![NPM](https://nodei.co/npm/pastebin-ts.svg?downloads=true&stars=true)](https://nodei.co/npm/pastebin-ts/)
-[![Build Status](https://travis-ci.org/j3lte/pastebin-ts.svg?branch=master)](https://travis-ci.org/j3lte/pastebin-ts)
 [![DAVID](https://david-dm.org/j3lte/pastebin-ts.svg)](https://david-dm.org/j3lte/pastebin-ts)
 [![npm version](https://badge.fury.io/js/pastebin-ts.svg)](http://badge.fury.io/js/pastebin-ts)
 [![Development Dependency Status](https://david-dm.org/j3lte/pastebin-ts/dev-status.svg?theme=shields.io)](https://david-dm.org/j3lte/pastebin-ts#info=devDependencies)
-[![Code Climate](https://codeclimate.com/github/j3lte/pastebin-ts/badges/gpa.svg)](https://codeclimate.com/github/j3lte/pastebin-ts)
 
 Typescript version of the Pastebin API client
 
