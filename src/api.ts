@@ -149,7 +149,11 @@ export class PastebinAPI {
 
         let data: string;
         try {
-            data = await fsReadfilePromise(options.file, 'utf8');
+            if (Buffer.isBuffer(options.file)) {
+                data = options.file.toString('utf-8');
+            } else {
+                data = await fsReadfilePromise(options.file, 'utf8');
+            }
         } catch (error) {
             return Promise.reject(new Error(`Error reading file! ${error}`));
         }

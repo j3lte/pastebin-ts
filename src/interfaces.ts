@@ -38,7 +38,7 @@ export type FormatType = '4cs' | '6502acme' | '6502kickass' | '6502tasm' | 'abap
 
 export interface ICreatePasteBaseOptions {
     text?: string;
-    file?: string;
+    file?: string | Buffer;
     title?: string;
     format?: FormatType;
     privacy?: number;
@@ -50,7 +50,7 @@ export interface ICreatePasteTextOptions extends ICreatePasteBaseOptions {
 }
 
 export interface ICreatePasteFileOptions extends ICreatePasteBaseOptions {
-    file: string;
+    file: string | Buffer;
 }
 
 export interface IPasteAPIOptions {

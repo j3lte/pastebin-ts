@@ -122,6 +122,25 @@ describe('createPaste', () => {
         expect(request).lastCalledWith('https://pastebin.com/api/api_post.php', defaultOpts);
     });
 
+    it('create a simple paste from file buffer', async () => {
+        const pastebin = new PastebinAPI('TESTKEY');
+        (<jest.Mock>request).mockImplementation(async () => response1);
+
+        const defaultOpts = createOptions('POST', {form: {
+            api_dev_key: 'TESTKEY',
+            api_option: 'paste',
+            api_paste_expire_date: 'N',
+            api_paste_code: 'TESTING',
+            api_paste_format: 'typoscript',
+            api_paste_name: 'title',
+            api_paste_private: 0
+        }});
+
+        await expect(pastebin.createPasteFromFile({file: Buffer.from('TESTING'), expiration: 'N', title: 'title', format: 'typoscript'})).resolves.toBe(response1.body);
+
+        expect(request).lastCalledWith('https://pastebin.com/api/api_post.php', defaultOpts);
+    });
+
     it('rejects a private paste when user_name is missing', async () => {
         const pastebin = new PastebinAPI({
             api_dev_key: 'TESTKEY',
