@@ -12,7 +12,9 @@
         "pretest": "npm run lint",
         "test": "npm run test-only",
         "test-only": "jest --coverage",
-        "test:watch": "jest --watch --coverage"
+        "test:watch": "jest --watch --coverage",
+        "docs": "typedoc --out docs src/index.ts",
+        "docs-watch": "typedoc --watch --out docs src/index.ts"
     },
     "keywords": [
         "pastebin"

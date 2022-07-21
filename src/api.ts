@@ -27,6 +27,11 @@ export class PastebinAPI {
 
     // Public methods
 
+    /**
+     *
+     * @param config
+     * @returns
+     */
     constructor(config?: IPastebinOptions | string) {
         if (isUndefined(config) || isNull(config)) {
             this.config = {};
@@ -43,6 +48,12 @@ export class PastebinAPI {
         this.config = extend(defaultOptions, conf);
     }
 
+    /**
+     *
+     * @param id ID of the paste
+     * @param isPrivate is the paste private? Needs authentication
+     * @returns
+     */
     public async getPaste(
         id: string,
         isPrivate: boolean = false,
