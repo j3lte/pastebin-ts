@@ -24,6 +24,7 @@
         "object-literal-key-quotes": false,
         "no-null-keyword": false,
         "no-console": false,
+        "no-default-export": false,
         "trailing-comma": [
             true,
             {

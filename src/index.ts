@@ -11,4 +11,6 @@ export {
 } from './interfaces';
 
 export type PastebinAPI = Pastebin;
+
+exports = module.exports = Pastebin;
 export default Pastebin;
