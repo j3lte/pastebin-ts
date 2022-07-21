@@ -32,6 +32,11 @@ describe('createPaste', () => {
         await expect(pastebin.createPaste({text: 'TEST'})).rejects.toEqual(new Error('Dev key needed!'));
     });
 
+    it('rejects when text is empty', async () => {
+        const pastebin = new PastebinAPI('TESTKEY');
+        await expect(pastebin.createPaste({text: ''})).rejects.toEqual(new Error('Paste cannot have empty content'));
+    });
+
     it('rejects with wrong privacy level', async () => {
         const pastebin = new PastebinAPI('TESTKEY');
         const err = new Error('Privacy level can only be 0 - 3');

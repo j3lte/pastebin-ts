@@ -21,6 +21,7 @@ const response1 = {
     error: '',
     body: 'test',
 };
+const responseLogin = { statusCode: 200, error: '', body: '431d212f439fa6da8d1cc5ff57355a2e' }
 
 describe('getPaste anonymous', () => {
     const pastebin = new PastebinAPI();
@@ -45,5 +46,18 @@ describe('getPaste anonymous', () => {
             'https://pastebin.com/raw.php?i=xxxxx',
             defaultOpts,
         );
+    });
+
+    it('makes a GET request for private', async () => {
+        (<jest.Mock>request).mockImplementationOnce(async () => responseLogin).mockImplementationOnce(async () => response1);
+
+        const pastebin2 = new PastebinAPI({
+            api_dev_key: 'TESTKEY',
+            api_user_name: 'user@user.com',
+            api_user_password: 'Supersecret password'
+        });
+        const defaultOpts = createOptions('GET', { qs: {} });
+
+        await expect(pastebin2.getPaste('xxxxx', true)).resolves.toBe(response1.body);
     });
 });

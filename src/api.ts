@@ -72,6 +72,7 @@ export class PastebinAPI {
         }
 
         const { text, title, format, expiration } = options;
+
         let { privacy } = options;
 
         if (isUndefined(privacy) || typeof privacy !== 'number') {
@@ -89,6 +90,10 @@ export class PastebinAPI {
             return Promise.reject(
                 new Error('text can only be of type string!'),
             );
+        }
+
+        if (!Boolean(text) || text.length === 0) {
+            return Promise.reject(new Error('Paste cannot have empty content'));
         }
 
         if (typeof title === 'string') {
