@@ -2,6 +2,7 @@ name: Install and test pastebin-ts
 on:
   push:
     branches:
+      - master
       - main
   pull_request:
     paths-ignore:
