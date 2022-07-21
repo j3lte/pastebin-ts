@@ -10,7 +10,7 @@
         "declaration": true,
         "experimentalDecorators": true,
         "removeComments": true,
-        "pretty": true
+        "pretty": true,
     },
     "include": [
         "src/**/*",

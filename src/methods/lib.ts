@@ -1,31 +1,24 @@
+import { Delays, Headers, Method, OptionsOfTextResponseBody, Response } from 'got';
 import { isNull, isUndefined } from 'lodash';
-import { Headers, Response } from 'request';
-import { RequestPromiseOptions } from 'request-promise-native';
-
 import * as pkg from 'pjson';
 
-const timeout = 4000;
-const headers: Headers = [
-    {
-        name: 'User-Agent',
-        value: `Pastebin-ts/${pkg.version}`,
-    },
-    {
-        name: 'Cache-Control',
-        value: 'no-cache',
-    },
-];
+const timeout: Delays = {
+    request: 4000,
+};
+const headers: Headers = {
+    'User-Agent': `Pastebin-ts/${pkg.version}`,
+    'Cache-Control': 'no-cache',
+};
 
-const getOptions = (method: string, params: {} = {}): RequestPromiseOptions => {
-    const options: RequestPromiseOptions = {
-        resolveWithFullResponse: true,
+const getOptions = (method: Method, params: {} = {}): OptionsOfTextResponseBody => {
+    const options: OptionsOfTextResponseBody = {
         method,
         headers,
         timeout,
         followRedirect: true,
     };
     if (method === 'GET') {
-        options.qs = params;
+        options.searchParams = params;
     } else if (method === 'POST') {
         options.form = params;
     }
@@ -33,7 +26,7 @@ const getOptions = (method: string, params: {} = {}): RequestPromiseOptions => {
     return options;
 };
 
-const handleResponse = (response: Response, resolve: Function, reject: Function): void => {
+const handleResponse = (response: Response<string>, resolve: Function, reject: Function): void => {
     if (response === null || response === undefined) {
         reject(new Error('No response!'));
     } else {

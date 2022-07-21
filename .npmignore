@@ -17,8 +17,12 @@ lib-cov
 *DS_Store*
 .env
 .env.example
+.codeclimate.yml
+.prettierrc
+tslint.json
 
 test.js
+jest.config.js
 yarn-error.log
 coverage/
 __tests__/
