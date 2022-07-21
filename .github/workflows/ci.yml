@@ -8,7 +8,7 @@ on:
         paths-ignore:
             - '*.md'
 jobs:
-    nodejs:
+    buildtest:
         name: Node.js
         runs-on: ${{ matrix.os }}
         strategy:
@@ -29,3 +29,19 @@ jobs:
                   token: ${{ secrets.CODECOV_TOKEN }}
                   files: coverage/lcov.info
                   name: ${{ matrix.os }}/${{ matrix.node-version }}
+    deploy-docs:
+        name: Deploy docs
+        needs: buildtest
+        runs-on: ubuntu-latest
+            - uses: actions/checkout@v3
+            - uses: actions/setup-node@v3
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: 'yarn'
+            - run: yarn install --frozen-lockfile
+            - run: npx typedoc --out docs src/index.ts
+            - name: Deploy
+              uses: peaceiris/actions-gh-pages@v3
+              with:
+                github_token: ${{ secrets.GITHUB_TOKEN }}
+                publish_dir: ./docs
