@@ -9,6 +9,8 @@ test.js
 testing.js
 .travis.yml
 .DS_Store
+.github
+docs
 coverage.html
 lib-cov
 
