@@ -1,31 +1,31 @@
-name: Install and test pastebin-ts
+name: master
 on:
-  push:
-    branches:
-      - master
-      - main
-  pull_request:
-    paths-ignore:
-      - "*.md"
+    push:
+        branches:
+            - master
+            - main
+    pull_request:
+        paths-ignore:
+            - '*.md'
 jobs:
-  nodejs:
-    name: Node.js
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        node-version: [^14, ^16, ^18]
-        os: [ubuntu-latest]
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: "yarn"
-      - run: yarn install --frozen-lockfile
-      - run: yarn test
-      - uses: codecov/codecov-action@v3
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          files: coverage/lcov.info
-          name: ${{ matrix.os }}/${{ matrix.node-version }}
+    nodejs:
+        name: Node.js
+        runs-on: ${{ matrix.os }}
+        strategy:
+            fail-fast: false
+            matrix:
+                node-version: [^14, ^16, ^18]
+                os: [ubuntu-latest]
+        steps:
+            - uses: actions/checkout@v3
+            - uses: actions/setup-node@v3
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: 'yarn'
+            - run: yarn install --frozen-lockfile
+            - run: yarn test
+            - uses: codecov/codecov-action@v3
+              with:
+                  token: ${{ secrets.CODECOV_TOKEN }}
+                  files: coverage/lcov.info
+                  name: ${{ matrix.os }}/${{ matrix.node-version }}
