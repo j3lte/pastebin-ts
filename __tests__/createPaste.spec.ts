@@ -24,7 +24,7 @@ describe('createPaste', () => {
     it('reject an empty request', async () => {
         const pastebin = new PastebinAPI('TESTKEY');
         // @ts-ignore
-        await expect(pastebin.createPaste()).rejects;
+        await expect(pastebin.createPaste()).rejects.toEqual(new Error('Create paste needs options!'));
     });
 
     it('rejects when no key is present', async () => {
@@ -58,6 +58,7 @@ describe('createPaste', () => {
         const err = new Error('text can only be of type string!');
         // @ts-ignore
         await expect(pastebin.createPaste({text: 1111})).rejects.toEqual(err);
+        // @ts-ignore
         await expect(pastebin.createPaste({text: null})).rejects.toEqual(err);
     });
 

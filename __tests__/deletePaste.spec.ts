@@ -25,7 +25,7 @@ describe('deletePaste', () => {
     it('reject an empty request', async () => {
         const pastebin = new PastebinAPI('TESTKEY');
         // @ts-ignore
-        await expect(pastebin.deletePaste()).rejects;
+        await expect(pastebin.deletePaste()).rejects.toEqual(new Error('The following keys are missing: api_user_name,api_user_password'));
     });
 
     it('rejects when no key is present', async () => {

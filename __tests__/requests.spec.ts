@@ -27,7 +27,7 @@ describe('getRequest', () => {
     });
 
     it('reject an empty request', async () => {
-        await expect(getRequest()).rejects;
+        await expect(getRequest()).rejects.toEqual(new Error('No path provided!'));
     });
 
     it('makes a GET request', async () => {
@@ -106,7 +106,7 @@ describe('postRequest', () => {
     });
 
     it('reject an empty request', async () => {
-        await expect(postRequest()).rejects;
+        await expect(postRequest()).rejects.toEqual(new Error('No path provided!'));
     });
 
     it('makes a GET request', async () => {
