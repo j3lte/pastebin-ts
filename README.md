@@ -1,6 +1,12 @@
 pastebin-ts
 ===
 
+> *********** NOTE ***********
+>
+> Update 2023-11-22 --- I consider this package to be **deprecated**. Please install [pastedeno](https://www.npmjs.com/package/pastedeno) for an up to date wrapper for Pastebin! Active development on the current package is halted
+>
+> *********** NOTE ***********
+
 ![NPM](https://img.shields.io/npm/l/pastebin-ts)
 ![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/j3lte/pastebin-ts)
 [![master](https://github.com/j3lte/pastebin-ts/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/j3lte/pastebin-ts/actions/workflows/ci.yml)
